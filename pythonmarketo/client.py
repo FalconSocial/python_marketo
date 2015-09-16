@@ -97,6 +97,7 @@ class MarketoClient:
             args['fields'] = ",".join(fields)
         data = HttpLib().get("https://" + self.host + "/rest/v1/leads.json", args)
         if data is None: raise Exception("Empty Response")
+        print data
         self.last_request_id = data['requestId']
         if not data['success']: raise MarketoException(data['errors'][0])
         return data['result']
